@@ -3,6 +3,8 @@ import pandas as pd
 import os
 from constants import *
 
+import pprint
+
 def setup():
 
     functions.create_directory_if_not_exist(partitioned_dataset_directory)
@@ -50,11 +52,15 @@ def create_processed_json():
                 ]
             ]
             result.extend(list(df.to_dict(orient='index').values()))
-            
+
         except:
             pass
     
     functions.export_list_as_json(result,'combined.json')
+        except:
+            pass
+    
+    pprint.pprint(result)
 
 def question2():
     """

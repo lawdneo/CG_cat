@@ -13,6 +13,7 @@ from shutil import make_archive
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
 
+
 def read_jsonl_file(file_path: str) -> pd.DataFrame:
     """
     Reads a jsonl file and returns a pandas dataframe
@@ -130,3 +131,4 @@ def upload_to_drive(filepath: str, filename: str)-> int:
         file = None
 
     return file.get('id')
+        json.dump(datalist, f)
