@@ -92,11 +92,12 @@ def export_list_as_json(datalist: list, file_path):
     with open(file_path, "w") as f:
         json.dump(datalist, f)
 
-def zip_directory(directory_name: str, zip_file_name: str):
+def zip_directory(directory_name: str, zip_file_name: str) ->str:
     """
     Zips a directory
     """
     make_archive(zip_file_name, 'zip', directory_name)
+    return f"{zip_file_name}.zip"
 
 
 def upload_to_drive(filepath: str, filename: str)-> int:
@@ -130,5 +131,3 @@ def upload_to_drive(filepath: str, filename: str)-> int:
         print(F'An error occurred: {error}')
         file = None
 
-    return file.get('id')
-        json.dump(datalist, f)
