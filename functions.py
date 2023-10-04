@@ -2,6 +2,16 @@ import pandas as pd
 import numpy as np
 import json
 import os
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from googleapiclient.http import MediaFileUpload
+from shutil import make_archive
+
+SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+
 
 
 def read_jsonl_file(file_path: str) -> pd.DataFrame:
@@ -80,4 +90,45 @@ def export_list_as_json(datalist: list, file_path):
     Exports a list as json file
     """
     with open(file_path, "w") as f:
+        json.dump(datalist, f)
+
+def zip_directory(directory_name: str, zip_file_name: str):
+    """
+    Zips a directory
+    """
+    make_archive(zip_file_name, 'zip', directory_name)
+
+
+def upload_to_drive(filepath: str, filename: str)-> int:
+    """
+    Uploads a file to google drive and returns the file id
+    """
+    creds = None
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+
+    try:
+        service = build('drive', 'v3', credentials=creds)
+
+        file_metadata = {'name': filename}
+        media = MediaFileUpload(filename,
+                                mimetype='application/zip')
+        file = service.files().create(body=file_metadata, media_body=media,
+                                      fields='id').execute()
+        print(F'File ID: {file.get("id")}')
+
+    except HttpError as error:
+        print(F'An error occurred: {error}')
+        file = None
+
+    return file.get('id')
         json.dump(datalist, f)
