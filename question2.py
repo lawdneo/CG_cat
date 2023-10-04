@@ -1,10 +1,8 @@
 import functions
 import pandas as pd
 import os
-from constants import *
-
+from constants import partitioned_dataset_directory,processed_dataset_directory,english_dataset_path,kiswahili_dataset_path,german_dataset_path
 import pprint
-
 def setup():
 
     functions.create_directory_if_not_exist(partitioned_dataset_directory)
@@ -29,6 +27,10 @@ def partition_datasets(dfs: list[pd.DataFrame], df_names: list["str"]):
                 partitioned_dataset_directory, f"{name}-{partition}.jsonl"
             )
             functions.df_to_jsonl(partitioned_df, export_path)
+    
+
+    
+
 
 
 def create_processed_json():
@@ -52,11 +54,6 @@ def create_processed_json():
                 ]
             ]
             result.extend(list(df.to_dict(orient='index').values()))
-
-        except:
-            pass
-    
-    functions.export_list_as_json(result,'combined.json')
         except:
             pass
     
@@ -73,5 +70,8 @@ def question2():
     dfs = [english_df, kiswahili_df, german_df]
     df_names = ["english", "kiswahili", "german"]
     partition_datasets(dfs, df_names)
-    create_processed_json()
 
+    zipped_dir = functions.zip_directory(partitioned_dataset_directory,"partitioned")
+    functions.upload_to_drive(zipped_dir)
+
+    create_processed_json()
