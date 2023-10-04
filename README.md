@@ -23,5 +23,5 @@ source venv/bin/activate
 ```{code}
 pip install -r requirements.txt
 ```
-4. Data Import
-You should have already obtained the MASSIVE Dataset mentioned in the Data File. Ensure that you have this dataset, and it is accessible in your project directory. Save it to the ```data``` folder in the project directory.
+4. Data Import:
+Having already obtained the MASSIVE Dataset mentioned in the Data File, Ensure that this dataset is accessible in your project directory. Save it under the ```data``` folder in the project directory.
