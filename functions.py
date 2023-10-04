@@ -97,7 +97,7 @@ def zip_directory(directory_name: str, zip_file_name: str) ->str:
     Zips a directory
     """
     make_archive(zip_file_name, 'zip', directory_name)
-    return os.path.join(directory_name,f"{zip_file_name}.zip")
+    return f"{zip_file_name}.zip"
 
 
 def upload_to_drive(filepath: str, filename: str)-> int:
@@ -131,4 +131,3 @@ def upload_to_drive(filepath: str, filename: str)-> int:
         print(F'An error occurred: {error}')
         file = None
 
-    return file.get('id')
