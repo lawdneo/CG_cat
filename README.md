@@ -24,3 +24,8 @@ pip install -r requirements.txt
 ```
 4. Data Import:
 Having already obtained the MASSIVE Dataset mentioned in the Data File, Ensure that this dataset is accessible in your project directory. Save it under the ```data``` folder in the project directory.
+
+### Implementation
+
+Using a merge algorithm to form the requests locales instead of a recursive algorithm.
+The merge algorithm was done using pandas.
