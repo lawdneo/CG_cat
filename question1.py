@@ -8,6 +8,10 @@ processed_directory = None
 
 
 def setup(processed_dataset_dir):
+    '''
+    
+    '''
+
     global processed_directory
     functions.create_directory_if_not_exist(processed_dataset_dir)
     processed_directory = processed_dataset_dir
@@ -31,6 +35,6 @@ def question1(dataset_directory_path: str, destination_directory_path: str):
     with concurrent.futures.ProcessPoolExecutor() as executor:
         executor.map(process_file, files)
 
-    # zip_file = functions.zip_directory(destination_directory_path,'processed')
-    # functions.upload_to_drive(zip_file,zip_file)
+    zip_file = functions.zip_directory(destination_directory_path,'processed')
+    functions.upload_to_drive(zip_file,zip_file)
 
