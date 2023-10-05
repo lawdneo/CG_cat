@@ -1,3 +1,8 @@
+'''
+This module answers question 1 on the task provided
+'''
+
+
 import functions
 import os
 import concurrent.futures

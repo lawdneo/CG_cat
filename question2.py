@@ -39,7 +39,9 @@ def partition_datasets(dfs: list[pd.DataFrame], df_names: list["str"]):
 
 
 def create_processed_json():
-    """ """
+    """
+    Partitions the dataset by train and exports as a pretty printed JSON file.
+    """
 
     files_english = os.listdir(processed_dataset_directory)
 
@@ -75,6 +77,6 @@ def question2():
     partition_datasets(dfs, df_names)
 
     zipped_dir = functions.zip_directory(partitioned_dataset_directory, "partitioned")
-    functions.upload_to_drive(zipped_dir)
+    functions.upload_to_drive(zipped_dir,'partitioned')
 
     create_processed_json()

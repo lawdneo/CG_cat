@@ -1,3 +1,6 @@
+'''
+This module contains a list of default paths to use within the project
+'''
 import os
 dataset_directory = "./massive-dataset/1.1/data"
 partitioned_dataset_directory = "./partitioned-datasets"

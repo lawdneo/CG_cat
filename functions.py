@@ -83,14 +83,14 @@ def partition_dfs(df: pd.DataFrame, key: str) -> pd.DataFrame:
     return df[df["partition"] == key]
 
 
-def df_to_jsonl(df: pd.DataFrame, file_path: str):
+def df_to_jsonl(df: pd.DataFrame, file_path: str) ->None:
     """
     Writes the dataframe to a jsonl file
     """
     df.to_json(file_path, orient="records", lines=True)
 
 
-def export_list_as_json(datalist: list, file_path):
+def export_list_as_json(datalist: list, file_path) ->None:
     """
     Exports a list as json file
     """
