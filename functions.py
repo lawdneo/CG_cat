@@ -10,7 +10,7 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from shutil import make_archive
 
-SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/spreadsheets']
 
 
 
@@ -100,7 +100,7 @@ def zip_directory(directory_name: str, zip_file_name: str) ->str:
     return f"{zip_file_name}.zip"
 
 
-def upload_to_drive(filepath: str, filename: str)-> int:
+def upload_to_drive(filename: str):
     """
     Uploads a file to google drive and returns the file id
     """
