@@ -47,6 +47,6 @@ def question1(dataset_directory_path: str, destination_directory_path: str):
     log.info("File Processing Has Been Initialized")
     with concurrent.futures.ProcessPoolExecutor() as executor:
         executor.map(process_file, files)
-
+    log.info("Compressing and Uploading the Files")
     zip_file = functions.zip_directory(destination_directory_path, "processed")
     functions.upload_to_drive(zip_file)

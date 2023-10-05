@@ -45,7 +45,7 @@ def create_directory_if_not_exist(directory_name: str):
     if os.path.exists(directory_name):
         pass
     else:
-        log.warning(f"The directory does not exist, creating it")
+        log.warning(f"The directory {directory_name} does not exist, Creating it")
         os.mkdir(directory_name)
 
 
@@ -113,6 +113,7 @@ def upload_to_drive(filename: str):
     """
     Uploads a file to google drive and returns the file id
     """
+    log.info(f"Uploading the file: {filename}")
     creds = None
     if os.path.exists("token.json"):
         creds = Credentials.from_authorized_user_file("token.json", SCOPES)
@@ -140,5 +141,6 @@ def upload_to_drive(filename: str):
 
     except HttpError as error:
         print(f"An error occurred: {error}")
-        log.error(str(error))
         file = None
+    except Exception as error:
+        log.error(str(error))
