@@ -14,6 +14,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from shutil import make_archive
+from zenlog import log
 
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/spreadsheets']
 
@@ -44,6 +45,7 @@ def create_directory_if_not_exist(directory_name: str):
     if os.path.exists(directory_name):
         pass
     else:
+        log.warning(f"The directory does not exist, creating it")
         os.mkdir(directory_name)
 
 
@@ -88,6 +90,7 @@ def df_to_jsonl(df: pd.DataFrame, file_path: str) ->None:
     Writes the dataframe to a jsonl file
     """
     df.to_json(file_path, orient="records", lines=True)
+    
 
 
 def export_list_as_json(datalist: list, file_path) ->None:
@@ -132,8 +135,10 @@ def upload_to_drive(filename: str):
             .create(body=file_metadata, media_body=media, fields="id")
             .execute()
         )
+        log.info(f"Uploaded the file {filename}")
         print(f'File ID: {file.get("id")}')
 
     except HttpError as error:
         print(f"An error occurred: {error}")
+        log.error(str(error))
         file = None
