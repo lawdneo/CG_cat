@@ -13,7 +13,6 @@ english_df = functions.read_jsonl_file(english_dataset_path)
 processed_directory = None
 
 
-
 def setup(processed_dataset_dir):
     """
     Create the specified temporary directory if it does not exist
@@ -42,6 +41,7 @@ def question1(dataset_directory_path: str, destination_directory_path: str):
     """
     Answers question 1 task and uploads the files to google drive
     """
+
     setup(destination_directory_path)
     files = os.listdir(dataset_directory_path)
     log.info("File Processing Has Been Initialized")

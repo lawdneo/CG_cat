@@ -1,6 +1,6 @@
-'''
+"""
 This functions module contains different functions to support the answering of the tasks provided
-'''
+"""
 
 
 import pandas as pd
@@ -16,8 +16,11 @@ from googleapiclient.http import MediaFileUpload
 from shutil import make_archive
 from zenlog import log
 
-SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/spreadsheets']
-
+SCOPES = [
+    "https://www.googleapis.com/auth/drive.metadata.readonly",
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/spreadsheets",
+]
 
 
 def read_jsonl_file(file_path: str) -> pd.DataFrame:
@@ -85,15 +88,14 @@ def partition_dfs(df: pd.DataFrame, key: str) -> pd.DataFrame:
     return df[df["partition"] == key]
 
 
-def df_to_jsonl(df: pd.DataFrame, file_path: str) ->None:
+def df_to_jsonl(df: pd.DataFrame, file_path: str) -> None:
     """
     Writes the dataframe to a jsonl file
     """
     df.to_json(file_path, orient="records", lines=True)
-    
 
 
-def export_list_as_json(datalist: list, file_path) ->None:
+def export_list_as_json(datalist: list, file_path) -> None:
     """
     Exports a list as json file
     """
