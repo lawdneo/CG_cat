@@ -15,6 +15,8 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from shutil import make_archive
 from zenlog import log
+import requests
+import datetime
 
 SCOPES = [
     "https://www.googleapis.com/auth/drive.metadata.readonly",
@@ -127,22 +129,36 @@ def upload_to_drive(filename: str):
             creds = flow.run_local_server(port=0)
         with open("token.json", "w") as token:
             token.write(creds.to_json())
-
     try:
         service = build("drive", "v3", credentials=creds)
+        access_token = creds.token
+        filesize = os.path.getsize(filename)
 
-        file_metadata = {"name": filename}
-        media = MediaFileUpload(filename, mimetype="application/zip")
-        file = (
-            service.files()
-            .create(body=file_metadata, media_body=media, fields="id")
-            .execute()
+        stamped_name= filename.replace(".zip", str(datetime.datetime.now())+".zip").replace(" ","_")
+
+        headers = {"Authorization": "Bearer " + access_token, "Content-Type": "application/json"}
+        params = {
+            "name": stamped_name,
+            "mimeType": "application/zip"
+        }
+        r = requests.post(
+            "https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable",
+            headers=headers,
+            data=json.dumps(params)
         )
-        log.info(f"Uploaded the file {filename}")
-        print(f'File ID: {file.get("id")}')
+        location = r.headers['Location']
+
+        headers = {"Content-Range": "bytes 0-" + str(filesize - 1) + "/" + str(filesize)}
+        r = requests.put(
+            location,
+            headers=headers,
+            data=open(filename, 'rb')
+        )
+        log.info(f"Uploaded backup file: {stamped_name}")
 
     except HttpError as error:
         print(f"An error occurred: {error}")
         file = None
     except Exception as error:
         log.error(str(error))
+
