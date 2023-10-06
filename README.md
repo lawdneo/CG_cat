@@ -29,3 +29,17 @@ Having already obtained the MASSIVE Dataset mentioned in the Data File, Ensure t
 
 Using a merge algorithm to form the requests locales instead of a recursive algorithm.
 The merge algorithm was done using pandas.
+
+## Creators 
+
+## Wayne Asava 
+
+## Edwin Ndiritu 
+
+## Olive Menorah 
+
+## Newton Brian 
+
+## Sumeiya Ali 
+
+
