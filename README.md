@@ -48,6 +48,6 @@ https://github.com/lawdneo
 https://github.com/Sushiali
 
 ## Copyright and Licenses 
-copyright 2023. Code released under Strathmore University.
+copyright 2023. Code released under Strathmore University
 
 
