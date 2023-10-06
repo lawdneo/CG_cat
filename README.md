@@ -36,12 +36,15 @@ The merge algorithm was done using pandas.
 https://github.com/AsavaAsava
 
 ### Edwin Ndiritu 
+https://github.com/nguthiru
 
 ### Olive Menorah 
+https://github.com/MenorahOlive
 
 ### Newton Brian 
 https://github.com/lawdneo
 
 ### Sumeiya Ali 
+https://github.com/Sushiali
 
 
