@@ -1,6 +1,6 @@
 # Massive dataset by Amazon
 
-This project puts a key emphasis on the efficient management of the dataset while addressing potential challenges related to memory and time complexity. The focus lies in generating language-specific files, denoted as 'en-xx.xlsx,' for diverse languages such as English (en), Swahili (sw), and German (de). Additionally, the project entails the creation of distinct JSONL files for English (en), Swahili (sw), and German (de), comprising test, train, and dev data sets. Moreover, the endeavor aims to produce a consolidated JSON file that incorporates translations from English to all other languages, encompassing both 'id' and 'utt' data for the training sets.
+This project puts a key emphasis on the efficient management of the dataset while addressing potential challenges related to memory and time complexity. The focus then lies in generating language-specific files, denoted as 'en-xx.xlsx,' for diverse languages such as English (en), Swahili (sw), and German (de). Additionally, the project entails the creation of distinct JSONL files for English (en), Swahili (sw), and German (de), comprising test, train, and dev data sets. Moreover, the endeavor aims to produce a consolidated JSON file that incorporates translations from English to all other languages, encompassing both 'id' and 'utt' data for the training sets.
 
 
 ## Installation
