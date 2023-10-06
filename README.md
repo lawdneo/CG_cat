@@ -32,14 +32,16 @@ The merge algorithm was done using pandas.
 
 ## Creators 
 
-## Wayne Asava 
+### Wayne Asava 
+https://github.com/AsavaAsava
 
-## Edwin Ndiritu 
+### Edwin Ndiritu 
 
-## Olive Menorah 
+### Olive Menorah 
 
-## Newton Brian 
+### Newton Brian 
+https://github.com/lawdneo
 
-## Sumeiya Ali 
+### Sumeiya Ali 
 
 
