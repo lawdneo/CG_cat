@@ -4,7 +4,7 @@ This project puts a key emphasis on the efficient management of the dataset whil
 
 
 ## Installation
-In order to set up the Python3 development environment and install the necessary dependencies, follow these steps:
+To set up the Python3 development environment and install the necessary dependencies, follow these steps:
 
 1. Clone this repository to your local machine:
 ```{code}
